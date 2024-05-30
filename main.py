@@ -1,16 +1,13 @@
-# This is a sample Python script.
+import matplotlib.pyplot as plt
+from tools.file_reader import read_file_image, read_file_label
+import random
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+images = read_file_image("data/t10k-images-idx3-ubyte")
+labels = read_file_label("data/t10k-labels-idx1-ubyte")
 
+image_index = random.randint(0, len(images) - 1)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+print("Label:", labels[image_index])
+plt.imshow(images[image_index], cmap='gray')
+plt.show()
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
