@@ -27,5 +27,6 @@ def read_file_label(filename):
         num_labels = struct.unpack('>I', f.read(4))[0]
 
         labels_data = f.read(num_labels)
+        labels_data = np.frombuffer(labels_data, dtype=np.uint8).reshape(num_labels, 1)
 
         return labels_data
