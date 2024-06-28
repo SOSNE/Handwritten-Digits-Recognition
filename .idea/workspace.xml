@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Added simple forward propagation with lose measuring. Fixed label reader to convert data to list.">
+    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="add file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/neural_network.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +110,9 @@
       <workItem from="1717927080724" duration="4529000" />
       <workItem from="1718102801993" duration="2492000" />
       <workItem from="1718877948466" duration="3124000" />
-      <workItem from="1719230270351" duration="739000" />
+      <workItem from="1719230270351" duration="5675000" />
+      <workItem from="1719396244841" duration="13761000" />
+      <workItem from="1719440030937" duration="11984000" />
     </task>
     <task id="LOCAL-00001" summary=".gitignore add">
       <option name="closed" value="true" />
@@ -143,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719231007476</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add file.">
+      <option name="closed" value="true" />
+      <created>1719231356291</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1719231356291</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,11 +165,12 @@
     <MESSAGE value="Initial commit." />
     <MESSAGE value="Displaying images and their labels." />
     <MESSAGE value="Added simple forward propagation with lose measuring. Fixed label reader to convert data to list." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added simple forward propagation with lose measuring. Fixed label reader to convert data to list." />
+    <MESSAGE value="add file." />
+    <option name="LAST_COMMIT_MESSAGE" value="add file." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$main.coverage" NAME="main Coverage Results" MODIFIED="1719230613095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$neural_network.coverage" NAME="neural_network Coverage Results" MODIFIED="1719230643068" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$neural_network.coverage" NAME="neural_network Coverage Results" MODIFIED="1719582116261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$file_reader.coverage" NAME="file_reader Coverage Results" MODIFIED="1717939136830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
   </component>
 </project>
