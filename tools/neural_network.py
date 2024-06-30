@@ -11,12 +11,15 @@ input_data = input_data.reshape(input_data.shape[0], input_data.shape[1] * input
 # convert data to range form 0 to 1
 input_data = input_data / 255.0
 # first weight that is connected to 785 hidden layers.
-weight_first = np.random.randn(input_nodes, hidden_nodes) * 0.01
+weight_first = np.random.randn(input_nodes, hidden_nodes)
+bias_first = np.full((hidden_nodes,), 0.1)
+
 # rest of weights that are connected to 784 hidden layers.
 # weights_rest = np.random.rand(hidden_layers, input_nodes, input_nodes)
 # last weight that is connected to a 10 output nodes.
 
-weight_last = np.random.randn(hidden_nodes, output_nodes) * 0.01
+weight_last = np.random.randn(hidden_nodes, output_nodes)
+bias_last = np.full((output_nodes,), 0.1)
 
 
 def sigmoid(x):
@@ -29,10 +32,10 @@ def sigmoid_derivative(x):
 
 
 def forward_propagation():
-    hidden_layer_values = input_data.dot(weight_first)
+    hidden_layer_values = input_data.dot(weight_first) + bias_first
     sigmoid_hidden_layer_values = sigmoid(hidden_layer_values)
 
-    output_values = sigmoid_hidden_layer_values.dot(weight_last)
+    output_values = sigmoid_hidden_layer_values.dot(weight_last) + bias_last
     sigmoid_output_values = sigmoid(output_values)
 
     output_values_true = np.zeros((labels.size, 10))
