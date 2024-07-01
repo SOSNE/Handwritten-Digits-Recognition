@@ -43,13 +43,13 @@ def forward_propagation():
 
     loss = np.square(sigmoid_output_values - output_values_true).sum()
     print(loss)
-    return hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true
+    return hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true, loss
 
 
 def back_propagation():
     global weight_last, weight_first, bias_last, bias_first
 
-    hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true = forward_propagation()
+    hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true, loss = forward_propagation()
 
     gradient_sigmoid_output_values_loss = 2 * (sigmoid_output_values - output_values_true)
 
@@ -71,6 +71,13 @@ def back_propagation():
     bias_last = bias_last - gradient_bias_output * 0.0001
     bias_first = bias_first - gradient_bias_first * 0.0001
 
+    return loss
 
-for i in range(1000):
-    back_propagation()
+
+for i in range(5000):
+    loss = back_propagation()
+    if loss <= 10:
+        break
+
+_, _, _, sigmoid_output_values, output_values_true, _ = forward_propagation()
+print(sigmoid_output_values[3], output_values_true[3])
