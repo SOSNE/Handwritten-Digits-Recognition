@@ -22,6 +22,15 @@ weight_last = np.random.randn(hidden_nodes, output_nodes)
 bias_last = np.full((output_nodes,), 0.1)
 
 
+def calculate_end_lose_probability_value(max_iterations, current_iteration, lose, previous_lose, first_lose, previous_quotient_summ):
+    if previous_lose is not None:
+        sequence_quotient = np.sqrt(lose/previous_lose)
+        #average_quotient = (previous_quotient_summ + sequence_quotient) / current_iteration
+        end_lose_probability_value = first_lose * np.power(sequence_quotient, (max_iterations - 1))
+        return end_lose_probability_value, sequence_quotient
+    return None, 0
+
+
 def sigmoid(x):
     x = np.clip(x, -500, 500)
     return 1 / (1 + np.exp(-x))
@@ -43,13 +52,13 @@ def forward_propagation():
 
     loss = np.square(sigmoid_output_values - output_values_true).sum()
     print(loss)
-    return hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true
+    return hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true, loss
 
 
 def back_propagation():
     global weight_last, weight_first, bias_last, bias_first
 
-    hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true = forward_propagation()
+    hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true, loss = forward_propagation()
 
     gradient_sigmoid_output_values_loss = 2 * (sigmoid_output_values - output_values_true)
 
@@ -71,6 +80,18 @@ def back_propagation():
     bias_last = bias_last - gradient_bias_output * 0.0001
     bias_first = bias_first - gradient_bias_first * 0.0001
 
+    return loss
+
+
+lose = back_propagation()
+first_lose = 9371.429013677895
+previous_lose = None
+previous_quotient_summ = 0
 
 for i in range(1000):
-    back_propagation()
+    lose = back_propagation()
+    # max_iterations, current_iteration, lose, previous_lose, first_lose, previous_average_quotient
+    end_lose, sequence_quotient = calculate_end_lose_probability_value(1000, i, lose, previous_lose, first_lose, previous_quotient_summ)
+    previous_lose = lose
+    previous_quotient_summ += sequence_quotient
+    print(end_lose)
