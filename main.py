@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from tools.file_reader import read_file_image, read_file_label
+from tools.model import predict_output
 import random
 
 images = read_file_image("data/t10k-images-idx3-ubyte")
