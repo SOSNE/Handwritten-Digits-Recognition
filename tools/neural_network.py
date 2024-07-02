@@ -1,5 +1,6 @@
 import numpy as np
 from tools.file_reader import read_file_image, read_file_label
+from tools.utils import save_model
 
 hidden_layers = 1
 input_nodes = 784
@@ -43,13 +44,14 @@ def forward_propagation():
 
     loss = np.square(sigmoid_output_values - output_values_true).sum()
     print(loss)
-    return hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true, loss
+    return (hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values,
+            output_values_true, loss, weight_first, weight_last, bias_first, bias_last)
 
 
 def back_propagation():
     global weight_last, weight_first, bias_last, bias_first
 
-    hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true, loss = forward_propagation()
+    hidden_layer_values, output_values, sigmoid_hidden_layer_values, sigmoid_output_values, output_values_true, loss, _, _, _, _ = forward_propagation()
 
     gradient_sigmoid_output_values_loss = 2 * (sigmoid_output_values - output_values_true)
 
@@ -74,10 +76,17 @@ def back_propagation():
     return loss
 
 
-for i in range(5000):
+for i in range(3000):
     loss = back_propagation()
     if loss <= 10:
         break
 
-_, _, _, sigmoid_output_values, output_values_true, _ = forward_propagation()
+(_, _, _, sigmoid_output_values, output_values_true, _, weight_first,
+ weight_last, bias_first, bias_last) = forward_propagation()
+
 print(sigmoid_output_values[3], output_values_true[3])
+data = [weight_first.tolist(), weight_last.tolist(),
+        bias_first.tolist(), bias_last.tolist()]
+
+
+save_model(data)
