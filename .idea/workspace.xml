@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Added model file that can predict the labels of data.">
+    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Added load model function.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +124,7 @@
       <workItem from="1719396244841" duration="13761000" />
       <workItem from="1719440030937" duration="14672000" />
       <workItem from="1719775570248" duration="7381000" />
-      <workItem from="1719915278536" duration="3231000" />
+      <workItem from="1719915278536" duration="4548000" />
     </task>
     <task id="LOCAL-00001" summary=".gitignore add">
       <option name="closed" value="true" />
@@ -204,7 +206,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719921951479</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Small fix in model.py in input data format.">
+      <option name="closed" value="true" />
+      <created>1719922236897</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719922236897</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added load model function.">
+      <option name="closed" value="true" />
+      <created>1719922260553</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1719922260553</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,12 +239,14 @@
     <MESSAGE value="Display output values on in the end of learning." />
     <MESSAGE value="Added saving model func that save model to file." />
     <MESSAGE value="Added model file that can predict the labels of data." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added model file that can predict the labels of data." />
+    <MESSAGE value="Small fix in model.py in input data format." />
+    <MESSAGE value="Added load model function." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added load model function." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$main.coverage" NAME="main Coverage Results" MODIFIED="1719869309510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$main.coverage" NAME="main Coverage Results" MODIFIED="1719923316889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$utils.coverage" NAME="utils Coverage Results" MODIFIED="1719873952406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
-    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$model.coverage" NAME="model Coverage Results" MODIFIED="1719921720072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$model.coverage" NAME="model Coverage Results" MODIFIED="1719922717173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$neural_network.coverage" NAME="neural_network Coverage Results" MODIFIED="1719920410516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$file_reader.coverage" NAME="file_reader Coverage Results" MODIFIED="1717939136830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
   </component>

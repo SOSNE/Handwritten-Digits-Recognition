@@ -9,6 +9,6 @@ def save_model(data, path="../store/weights.json"):
 
 
 def load_model(path="../store/weights.json"):
-    with open(path, 'w') as f:
+    with open(path, 'r') as f:
         data = f.read()
         return json.loads(data)

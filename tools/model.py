@@ -7,9 +7,13 @@ def sigmoid(x):
 
 
 def forward_propagation(input_data, weight_first, weight_last, bias_first, bias_last, labels):
-    input_data = input_data.reshape(input_data.shape[0], input_data.shape[1] * input_data.shape[2])
-    input_data = input_data / 255.0
+    print(input_data.shape)
+    if input_data.ndim == 3:
+        input_data = input_data.reshape(input_data.shape[0], input_data.shape[1] * input_data.shape[2])
+    if input_data.ndim == 2:
+        input_data = input_data.reshape(1, -1)
 
+    input_data = input_data / 255.0
     hidden_layer_values = input_data.dot(weight_first) + bias_first
     sigmoid_hidden_layer_values = sigmoid(hidden_layer_values)
 
