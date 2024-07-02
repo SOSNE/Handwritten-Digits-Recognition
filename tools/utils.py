@@ -6,3 +6,9 @@ def save_model(data, path="../store/weights.json"):
     os.makedirs(os.path.join("../store"), exist_ok=True)
     with open(path, 'w') as f:
         f.write(data)
+
+
+def load_model(path="../store/weights.json"):
+    with open(path, 'w') as f:
+        data = f.read()
+        return json.loads(data)

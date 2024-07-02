@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Display output values on in the end of learning.">
-      <change afterPath="$PROJECT_DIR$/tools/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/utils.py" afterDir="false" />
+    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Added model file that can predict the labels of data.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +122,7 @@
       <workItem from="1719396244841" duration="13761000" />
       <workItem from="1719440030937" duration="14672000" />
       <workItem from="1719775570248" duration="7381000" />
-      <workItem from="1719915278536" duration="2914000" />
+      <workItem from="1719915278536" duration="3231000" />
     </task>
     <task id="LOCAL-00001" summary=".gitignore add">
       <option name="closed" value="true" />
@@ -191,7 +188,23 @@
       <option name="project" value="LOCAL" />
       <updated>1719871387975</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added saving model func that save model to file.">
+      <option name="closed" value="true" />
+      <created>1719921858374</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1719921858374</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added model file that can predict the labels of data.">
+      <option name="closed" value="true" />
+      <created>1719921951479</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1719921951479</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +219,9 @@
     <MESSAGE value="Added simple back propagation with simple learning setup." />
     <MESSAGE value="Added bias and applied it in forward propagation." />
     <MESSAGE value="Display output values on in the end of learning." />
-    <option name="LAST_COMMIT_MESSAGE" value="Display output values on in the end of learning." />
+    <MESSAGE value="Added saving model func that save model to file." />
+    <MESSAGE value="Added model file that can predict the labels of data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added model file that can predict the labels of data." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$main.coverage" NAME="main Coverage Results" MODIFIED="1719869309510" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
