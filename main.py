@@ -11,7 +11,6 @@ model = load_model("store/weights.json")
 # input_data, weight_first, weight_last, bias_first, bias_last, labels
 
 image_index = random.randint(0, len(images) - 1)
-print(images[image_index])
 print("Label:", labels[image_index])
 predicted_value, _ = predict_output(images[image_index], model[0], model[1], model[2], model[3], labels)
 print("Predicted label:", predicted_value)

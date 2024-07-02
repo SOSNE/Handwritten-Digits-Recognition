@@ -7,7 +7,6 @@ def sigmoid(x):
 
 
 def forward_propagation(input_data, weight_first, weight_last, bias_first, bias_last, labels):
-    print(input_data.shape)
     if input_data.ndim == 3:
         input_data = input_data.reshape(input_data.shape[0], input_data.shape[1] * input_data.shape[2])
     if input_data.ndim == 2:
@@ -39,6 +38,6 @@ def predict_output(input_data, weight_first, weight_last, bias_first, bias_last,
             if value > biggest_value:
                 biggest_value = value
                 biggest_value_position = position
-        position += 1
+            position += 1
         return biggest_value_position, index
     index += 1
