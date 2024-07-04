@@ -10,6 +10,9 @@ input_data = input_data.reshape(input_data.shape[0], input_data.shape[1] * input
 # convert data to range form 0 to 1
 input_data = input_data / 255.0
 
+output_values_true = np.zeros((labels.size, 10))
+output_values_true[np.arange(labels.size), labels.flatten()] = 1
+
 
 def sigmoid(x):
     x = np.clip(x, -500, 500)
@@ -66,23 +69,44 @@ def forward_propagation(weights, biases, hidden_layers_diagram):
     return previous_dot_product, hidden_layer_values_all, hidden_layer_values_sigmoid_all
 
 
-# def backward_propagation(weights, biases, hidden_layers_diagram):
-#
-#     for index in range(len(hidden_layers_diagram)):
-#         if index == 0:
-#             gradient_sigmoid_output_values_loss = 2 * (sigmoid_output_values - output_values_true)
-#             gradient_output_values = (gradient_sigmoid_output_values_loss * sigmoid_derivative(output_values))
-#
-#             gradient_weight_output = np.dot(gradient_output_values.T, sigmoid_hidden_layer_values).T
-#             gradient_bias_output = np.sum(gradient_output_values, 0)
+def backward_propagation(weights, biases, hidden_layers_diagram):
+    _, hidden_layer_values_all, hidden_layer_values_sigmoid_all = forward_propagation(
+        weights, biases, hidden_layers_diagram)
+    hidden_layers_number = len(hidden_layers_diagram)
+    gradient_weights_all = []
+    gradient_bias_all = []
+    previous_gradient_derivative_values = 0
+    for index in range(hidden_layers_number, -1, -1):
+
+        if index == hidden_layers_number:
+            gradient_sigmoid_output_values_loss = 2 * (hidden_layer_values_sigmoid_all[index] - output_values_true)
+            gradient_derivative_values = (gradient_sigmoid_output_values_loss *
+                                      sigmoid_derivative(hidden_layer_values_all[index]))
+
+            gradient_weight = np.dot(gradient_derivative_values.T, hidden_layer_values_sigmoid_all[index-1]).T
+            gradient_bias = np.sum(gradient_derivative_values, 0)
+            previous_gradient_derivative_values = gradient_derivative_values
+        elif index != 0:
+            gradient_hidden_loss = np.dot(previous_gradient_derivative_values, weights[index+1].T)
+            gradient_derivative_values = (gradient_hidden_loss * sigmoid_derivative(hidden_layer_values_all[index]))
+
+            gradient_weight = np.dot(gradient_derivative_values.T, hidden_layer_values_sigmoid_all[index-1]).T
+            gradient_bias = np.sum(gradient_derivative_values, 0)
+            previous_gradient_derivative_values = gradient_derivative_values
+        else:
+            gradient_hidden_loss = np.dot(previous_gradient_derivative_values, weights[index+1].T)
+            gradient_derivative_values = (gradient_hidden_loss * sigmoid_derivative(hidden_layer_values_all[index]))
+
+            gradient_weight = np.dot(input_data.T, hidden_layer_values_sigmoid_all[index - 1]).T
+            gradient_bias = np.sum(gradient_derivative_values, 0)
+
+        gradient_weights_all.append(gradient_weight)
+        gradient_bias_all.append(gradient_bias)
 
 
-
-diagram = [2, 3, 1]
-#
-#
-# backward_propagation("2", "3", diagram)
+diagram = [22, 32, 11]
 weights, bias = generate_weights_and_bias(diagram)
-#
-data = forward_propagation(weights, bias, diagram)
-print(data)
+backward_propagation(weights, bias, diagram)
+
+# data = forward_propagation(weights, bias, diagram)
+# print(data)
