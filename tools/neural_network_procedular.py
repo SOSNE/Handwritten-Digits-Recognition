@@ -47,19 +47,23 @@ def generate_weights_and_bias(hidden_layers_diagram):
 
 def forward_propagation(weights, biases, hidden_layers_diagram):
     previous_dot_product = 0
+    hidden_layer_values_all = []
+    hidden_layer_values_sigmoid_all = []
     for index in range(len(hidden_layers_diagram)+1):
         print(index)
         if index == 0:
-            input_layer_values = input_data.dot(weights[index]) + biases[index]
-            input_layer_values_sigmoid = sigmoid(input_layer_values)
-            previous_dot_product = input_layer_values_sigmoid
+            hidden_layer_values = input_data.dot(weights[index]) + biases[index]
+            hidden_layer_values_sigmoid = sigmoid(hidden_layer_values)
+            previous_dot_product = hidden_layer_values_sigmoid
+
         else:
             print(index, "shape is: ", previous_dot_product.shape)
             hidden_layer_values = previous_dot_product.dot(weights[index]) + biases[index]
             hidden_layer_values_sigmoid = sigmoid(hidden_layer_values)
             previous_dot_product = hidden_layer_values_sigmoid
-
-    return previous_dot_product
+        hidden_layer_values_all.append(hidden_layer_values)
+        hidden_layer_values_sigmoid_all.append(hidden_layer_values_sigmoid)
+    return previous_dot_product, hidden_layer_values_all, hidden_layer_values_sigmoid_all
 
 
 # def backward_propagation(weights, biases, hidden_layers_diagram):
@@ -74,11 +78,11 @@ def forward_propagation(weights, biases, hidden_layers_diagram):
 
 
 
-# diagram = [2, 3, 1]
+diagram = [2, 3, 1]
 #
 #
 # backward_propagation("2", "3", diagram)
-# weights, bias = generate_weights_and_bias(diagram)
+weights, bias = generate_weights_and_bias(diagram)
 #
-# data = forward_propagation(weights, bias, diagram)
-# print(data)
+data = forward_propagation(weights, bias, diagram)
+print(data)
