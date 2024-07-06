@@ -1,12 +1,13 @@
 import numpy as np
 from tools.file_reader import read_file_image, read_file_label
+from tools.utils import save_model
 
 
-learning_rate = 0.001
+learning_rate = 0.0001
 input_nodes = 784
 output_nodes = 10
-input_data = read_file_image("../data/t10k-images-idx3-ubyte")
-labels = read_file_label("../data/t10k-labels-idx1-ubyte")
+input_data = read_file_image("../data/train-images-idx3-ubyte")
+labels = read_file_label("../data/train-labels-idx1-ubyte")
 input_data = input_data.reshape(input_data.shape[0], input_data.shape[1] * input_data.shape[2])
 # convert data to range form 0 to 1
 input_data = input_data / 255.0
@@ -114,15 +115,24 @@ def backward_propagation(weights, biases, hidden_layers_diagram):
     for i in range(len(weights)):
         weights[i] = weights[i] - gradient_weights_all[i] * learning_rate
         bias[i] = bias[i] - gradient_bias_all[i] * 0.0001
-    return loss
+    return weights, bias
 
 
-diagram = [20, 10, 10]
+diagram = [10, 10]
 weights, bias = generate_weights_and_bias(diagram)
 backward_propagation(weights, bias, diagram)
 
 
 for i in range(4000):
-    loss = backward_propagation(weights, bias, diagram)
-    # if loss < 2000:
-    #     learning_rate = 0.0001
+    weights, bias = backward_propagation(weights, bias, diagram)
+
+
+def convert_array_of_ndarray_to_list(arr):
+    _list = []
+    for ndarray in arr:
+        _list.append(ndarray.tolist())
+    return _list
+
+
+data = [convert_array_of_ndarray_to_list(weights), convert_array_of_ndarray_to_list(bias)]
+save_model(data)
