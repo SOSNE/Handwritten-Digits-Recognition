@@ -123,7 +123,7 @@ weights, bias = generate_weights_and_bias(diagram)
 backward_propagation(weights, bias, diagram)
 
 
-for i in range(4000):
+for i in range(1000):
     weights, bias = backward_propagation(weights, bias, diagram)
 
 
@@ -135,4 +135,4 @@ def convert_array_of_ndarray_to_list(arr):
 
 
 data = [convert_array_of_ndarray_to_list(weights), convert_array_of_ndarray_to_list(bias)]
-save_model(data)
+#save_model(data)
