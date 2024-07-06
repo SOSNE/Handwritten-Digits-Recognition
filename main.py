@@ -11,7 +11,7 @@ model = load_model("store/weights.json")
 
 image_index = random.randint(0, len(images) - 1)
 print("Label:", labels[image_index])
-predicted_value, _ = predict_output(images[image_index], model[0], model[1], model[2], model[3], labels[image_index])
+predicted_value, _ = predict_output(images[image_index], model[0], model[1], [10, 10], labels[image_index])
 print("Predicted label:", predicted_value)
 plt.imshow(images[image_index], cmap='gray')
 plt.show()
