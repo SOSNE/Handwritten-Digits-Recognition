@@ -1,5 +1,7 @@
 import pygame
 import sys
+import numpy as np
+import cv2
 
 color = (255, 255, 255)
 width = 10
@@ -21,25 +23,37 @@ def draw_line(screen, start, end, width, color):
         pygame.draw.circle(screen, color, (x, y), width)
 
 
+def process_image(surface):
+    pixel_array = pygame.surfarray.pixels2d(surface)
+    pixel_array = np.array(pixel_array, dtype=np.uint8)
+    resized_image = cv2.resize(pixel_array, (28, 28))
+    return resized_image
+
+
 screen.fill("black")
 
-while True:
-    mouse_pos = pygame.mouse.get_pos()
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            pygame.draw.circle(screen, color, mouse_pos, width)
-            last_pos = mouse_pos
-            drawing = True
-        elif event.type == pygame.MOUSEBUTTONUP:
-            drawing = False
-        elif event.type == pygame.MOUSEMOTION:
-            if drawing:
-                draw_line(screen, last_pos, mouse_pos, width, color)
+
+def start_drawing():
+    image = None
+    while True:
+        mouse_pos = pygame.mouse.get_pos()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                return image
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                pygame.draw.circle(screen, color, mouse_pos, width)
                 last_pos = mouse_pos
+                drawing = True
+            elif event.type == pygame.MOUSEBUTTONUP:
+                image = process_image(screen)
+                drawing = False
+            elif event.type == pygame.MOUSEMOTION:
+                if drawing:
+                    draw_line(screen, last_pos, mouse_pos, width, color)
+                    last_pos = mouse_pos
 
-    pygame.display.flip()
+        pygame.display.flip()
 
-    clock.tick(60)
+        clock.tick(60)
+
