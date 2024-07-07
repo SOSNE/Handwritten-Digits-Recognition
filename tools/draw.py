@@ -4,9 +4,8 @@ import numpy as np
 import cv2
 
 color = (255, 255, 255)
-width = 10
-drawing = False
-last_pos = None
+width = 7
+
 
 pygame.init()
 screen = pygame.display.set_mode((280, 280))
@@ -35,6 +34,8 @@ screen.fill("black")
 
 def start_drawing():
     image = None
+    drawing = False
+    last_pos = None
     while True:
         mouse_pos = pygame.mouse.get_pos()
         for event in pygame.event.get():
