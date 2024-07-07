@@ -1,5 +1,4 @@
 import pygame
-import sys
 import numpy as np
 import cv2
 
@@ -12,7 +11,7 @@ screen = pygame.display.set_mode((280, 280))
 clock = pygame.time.Clock()
 
 
-def draw_line(screen, start, end, width, color):
+def draw_line(start, end):
     dx = end[0] - start[0]
     dy = end[1] - start[1]
     distance = max(abs(dx), abs(dy))
@@ -49,12 +48,10 @@ def start_drawing():
             elif event.type == pygame.MOUSEBUTTONUP:
                 image = process_image(screen)
                 drawing = False
-            elif event.type == pygame.MOUSEMOTION:
-                if drawing:
-                    draw_line(screen, last_pos, mouse_pos, width, color)
-                    last_pos = mouse_pos
+            elif event.type == pygame.MOUSEMOTION and drawing:
+                draw_line(last_pos, mouse_pos)
+                last_pos = mouse_pos
 
         pygame.display.flip()
 
         clock.tick(60)
-
