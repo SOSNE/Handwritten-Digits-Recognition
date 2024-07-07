@@ -1,5 +1,6 @@
 import numpy as np
 import struct
+from tools.enrich_training_data import enrich_training_data, enrich_labels
 
 
 def read_file_image(filename):
@@ -14,6 +15,7 @@ def read_file_image(filename):
 
         image_data = f.read(num_images * num_rows * num_cols)
         images = np.frombuffer(image_data, dtype=np.uint8).reshape(num_images, num_rows, num_cols)
+        images = enrich_training_data(images)
 
         return images
 
@@ -28,5 +30,6 @@ def read_file_label(filename):
 
         labels_data = f.read(num_labels)
         labels_data = np.frombuffer(labels_data, dtype=np.uint8).reshape(num_labels, 1)
+        labels_data = enrich_labels(labels_data)
 
         return labels_data

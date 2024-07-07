@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from tools.file_reader import read_file_image, read_file_label
 from tools.model import predict_output
 from tools.utils import load_model
-from tools.draw import start_drawing
+# from tools.draw import start_drawing
 import random
 
 images = read_file_image("data/t10k-images-idx3-ubyte")
@@ -11,11 +11,11 @@ labels = read_file_label("data/t10k-labels-idx1-ubyte")
 model = load_model("store/weights.json")
 # bad_images = []
 
-img = start_drawing()
-
-predicted_value, _ = predict_output(img, model[0], model[1], [10, 10], labels[0])
-
-print("Predicted label:", predicted_value)
+# img = start_drawing()
+#
+# predicted_value, _ = predict_output(img, model[0], model[1], [10, 10], labels[0])
+#
+# print("Predicted label:", predicted_value)
 
 # for index in range(len(images)-1):
 #     # image_index = random.randint(0, len(images) - 1)
@@ -29,6 +29,8 @@ print("Predicted label:", predicted_value)
 #
 # print(len(images))
 # print(len(bad_images))
-# plt.imshow(images[image_index], cmap='gray')
-# plt.show()
+image_index = random.randint(10000, 19999)
+print("Label:", labels[image_index])
+plt.imshow(images[image_index], cmap='gray')
+plt.show()
 
