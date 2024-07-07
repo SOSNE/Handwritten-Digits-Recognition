@@ -13,7 +13,7 @@ bad_images = []
 for index in range(len(images)-1):
     # image_index = random.randint(0, len(images) - 1)
 
-    predicted_value, _ = predict_output(images[index], model[0], model[1], [10, 10], labels[index])
+    predicted_value, _ = predict_output(images[index], model[0], model[1], model[2], labels[index])
 
     if predicted_value != labels[index]:
         print("Label:", labels[index])
