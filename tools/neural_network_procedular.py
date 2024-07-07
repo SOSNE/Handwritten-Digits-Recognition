@@ -1,7 +1,7 @@
 import numpy as np
 from tools.file_reader import read_file_image, read_file_label
 from tools.utils import save_model
-
+import time
 
 learning_rate = 0.0001
 input_nodes = 784
@@ -57,6 +57,7 @@ def generate_weights_and_bias(hidden_layers_diagram):
 
 
 def forward_propagation(weights, biases, hidden_layers_diagram):
+    start_time = time.time()
     previous_dot_product = 0
     hidden_layer_values_all = []
     hidden_layer_values_sigmoid_all = []
@@ -74,11 +75,11 @@ def forward_propagation(weights, biases, hidden_layers_diagram):
         hidden_layer_values_sigmoid_all.append(hidden_layer_values_sigmoid)
     loss = np.square(previous_dot_product - output_values_true).sum()
     print("loss: ", loss)
-    return loss, previous_dot_product, hidden_layer_values_all, hidden_layer_values_sigmoid_all
+    return loss, previous_dot_product, hidden_layer_values_all, hidden_layer_values_sigmoid_all, start_time
 
 
 def backward_propagation(weights, biases, hidden_layers_diagram):
-    loss, previous_dot_product, hidden_layer_values_all, hidden_layer_values_sigmoid_all = forward_propagation(
+    loss, previous_dot_product, hidden_layer_values_all, hidden_layer_values_sigmoid_all, start_time = forward_propagation(
         weights, biases, hidden_layers_diagram)
     hidden_layers_number = len(hidden_layers_diagram)
     gradient_weights_all = []
@@ -115,16 +116,21 @@ def backward_propagation(weights, biases, hidden_layers_diagram):
     for i in range(len(weights)):
         weights[i] = weights[i] - gradient_weights_all[i] * learning_rate
         bias[i] = bias[i] - gradient_bias_all[i] * 0.0001
-    return weights, bias
+    end_time = time.time()
+    return weights, bias, start_time, end_time
 
 
-diagram = [10, 10]
+diagram = [756, 10]
 weights, bias = generate_weights_and_bias(diagram)
-backward_propagation(weights, bias, diagram)
+
+
+weights, bias, start_time, end_time = backward_propagation(weights, bias, diagram)
+elapsed_time = end_time - start_time
+print("Estimated completion time min:", (elapsed_time * 1000)/60)
 
 
 for i in range(1000):
-    weights, bias = backward_propagation(weights, bias, diagram)
+    weights, bias, start_time, end_time = backward_propagation(weights, bias, diagram)
 
 
 def convert_array_of_ndarray_to_list(arr):
