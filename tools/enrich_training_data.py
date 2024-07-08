@@ -1,13 +1,12 @@
 import numpy as np
 from scipy.ndimage import shift
-from skimage.transform import resize, rotate
+from skimage.transform import rotate
 import random
 
 
 def shuffle_arrays(train_array, labels_array):
     indices = np.arange(train_array.shape[0])
     np.random.shuffle(indices)
-    print(indices)
     train_array = train_array[indices]
     labels_array = labels_array[indices]
     return train_array, labels_array

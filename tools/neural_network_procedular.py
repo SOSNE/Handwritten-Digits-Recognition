@@ -3,7 +3,7 @@ from tools.file_reader import read_file_image, read_file_label
 from tools.utils import save_model
 import time
 
-learning_rate = 0.0001
+# learning_rate = 0.0001
 input_nodes = 784
 output_nodes = 10
 input_data = read_file_image("../data/train-images-idx3-ubyte")
@@ -114,13 +114,13 @@ def backward_propagation(weights, biases, hidden_layers_diagram):
         gradient_bias_all.insert(0, gradient_bias)
 
     for i in range(len(weights)):
-        weights[i] = weights[i] - gradient_weights_all[i] * learning_rate
+        weights[i] = weights[i] - gradient_weights_all[i] * 0.0001
         bias[i] = bias[i] - gradient_bias_all[i] * 0.0001
     end_time = time.time()
     return weights, bias, start_time, end_time
 
 
-diagram = [756, 10]
+diagram = [10, 10]
 weights, bias = generate_weights_and_bias(diagram)
 
 
@@ -129,7 +129,7 @@ elapsed_time = end_time - start_time
 print("Estimated completion time min:", (elapsed_time * 1000)/60)
 
 
-for i in range(1000):
+for i in range(3000):
     weights, bias, start_time, end_time = backward_propagation(weights, bias, diagram)
 
 
@@ -142,4 +142,4 @@ def convert_array_of_ndarray_to_list(arr):
 
 data = [convert_array_of_ndarray_to_list(weights),
         convert_array_of_ndarray_to_list(bias), diagram]
-#save_model(data)
+save_model(data)

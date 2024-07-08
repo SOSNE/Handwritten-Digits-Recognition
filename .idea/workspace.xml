@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Added shuffling of dataset.">
+    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Added shift of image.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/enrich_training_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/enrich_training_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/neural_network_procedular.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/neural_network_procedular.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,7 +143,7 @@
       <workItem from="1720373764584" duration="516000" />
       <workItem from="1720375166146" duration="754000" />
       <workItem from="1720391856025" duration="197000" />
-      <workItem from="1720472562321" duration="1454000" />
+      <workItem from="1720472562321" duration="3433000" />
     </task>
     <task id="LOCAL-00001" summary=".gitignore add">
       <option name="closed" value="true" />
@@ -399,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720473408558</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Added shift of image.">
+      <option name="closed" value="true" />
+      <created>1720474237369</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1720474237369</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +427,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Display output values on in the end of learning." />
     <MESSAGE value="Added saving model func that save model to file." />
     <MESSAGE value="Added model file that can predict the labels of data." />
     <MESSAGE value="Small fix in model.py in input data format." />
@@ -442,7 +451,8 @@
     <MESSAGE value="Implemented start_drawing func in main. Small bug fix in draw.py" />
     <MESSAGE value="Added basic training data enriching system." />
     <MESSAGE value="Added shuffling of dataset." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added shuffling of dataset." />
+    <MESSAGE value="Added shift of image." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added shift of image." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -456,12 +466,12 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$main.coverage" NAME="main Coverage Results" MODIFIED="1720474144168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$main.coverage" NAME="main Coverage Results" MODIFIED="1720475056968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$utils.coverage" NAME="utils Coverage Results" MODIFIED="1719873952406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$model.coverage" NAME="model Coverage Results" MODIFIED="1720271016166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$neural_network.coverage" NAME="neural_network Coverage Results" MODIFIED="1720178975945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$draw.coverage" NAME="draw Coverage Results" MODIFIED="1720354520392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
-    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$neural_network_procedular.coverage" NAME="neural_network_procedular Coverage Results" MODIFIED="1720345451026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
+    <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$neural_network_procedular.coverage" NAME="neural_network_procedular Coverage Results" MODIFIED="1720475363569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$file_reader.coverage" NAME="file_reader Coverage Results" MODIFIED="1717939136830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$enrich_training_data.coverage" NAME="enrich_training_data Coverage Results" MODIFIED="1720395009711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
   </component>
