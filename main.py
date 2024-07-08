@@ -2,13 +2,16 @@ import matplotlib.pyplot as plt
 from tools.file_reader import read_file_image, read_file_label
 from tools.model import predict_output
 from tools.utils import load_model
+from tools.enrich_training_data import shuffle_arrays
 # from tools.draw import start_drawing
 import random
 
 images = read_file_image("data/t10k-images-idx3-ubyte")
 labels = read_file_label("data/t10k-labels-idx1-ubyte")
 
-model = load_model("store/weights.json")
+images, labels = shuffle_arrays(images, labels)
+
+# model = load_model("store/weights.json")
 # bad_images = []
 
 # img = start_drawing()
@@ -29,7 +32,7 @@ model = load_model("store/weights.json")
 #
 # print(len(images))
 # print(len(bad_images))
-image_index = random.randint(10000, 19999)
+image_index = random.randint(0, 10000)
 print("Label:", labels[image_index])
 plt.imshow(images[image_index], cmap='gray')
 plt.show()
