@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.ndimage import shift
 from skimage.transform import resize, rotate
 import random
 
@@ -16,6 +17,9 @@ def enrich_training_data(training_data):
     enriched_training_data = []
     for data in training_data:
         random_rotation = random.randint(0, 360)
+        x_shifted = random.randint(-10, 10)
+        y_shifted = random.randint(-10, 10)
+        data = shift(data, shift=[x_shifted, y_shifted])
         data = rotate(data, angle=random_rotation)
         enriched_training_data.append(data)
 
