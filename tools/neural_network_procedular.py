@@ -74,7 +74,6 @@ def forward_propagation(weights, biases, hidden_layers_diagram):
         hidden_layer_values_all.append(hidden_layer_values)
         hidden_layer_values_sigmoid_all.append(hidden_layer_values_sigmoid)
     loss = np.square(previous_dot_product - output_values_true).sum()
-    print("loss: ", loss)
     return loss, previous_dot_product, hidden_layer_values_all, hidden_layer_values_sigmoid_all, start_time
 
 
@@ -117,20 +116,22 @@ def backward_propagation(weights, biases, hidden_layers_diagram):
         weights[i] = weights[i] - gradient_weights_all[i] * 0.0001
         bias[i] = bias[i] - gradient_bias_all[i] * 0.0001
     end_time = time.time()
-    return weights, bias, start_time, end_time
+    return weights, bias, start_time, end_time, loss
 
 
 diagram = [10, 10]
+training_iterations = 4000
 weights, bias = generate_weights_and_bias(diagram)
 
 
-weights, bias, start_time, end_time = backward_propagation(weights, bias, diagram)
+weights, bias, start_time, end_time, _ = backward_propagation(weights, bias, diagram)
 elapsed_time = end_time - start_time
-print("Estimated completion time min:", (elapsed_time * 1000)/60)
+print("Estimated completion time min:", (elapsed_time * training_iterations)/60)
 
 
-for i in range(3000):
-    weights, bias, start_time, end_time = backward_propagation(weights, bias, diagram)
+for i in range(training_iterations):
+    weights, bias, start_time, end_time, loss = backward_propagation(weights, bias, diagram)
+    print("Loss: ", loss, " iteration: ", i)
 
 
 def convert_array_of_ndarray_to_list(arr):
