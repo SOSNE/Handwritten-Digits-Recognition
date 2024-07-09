@@ -13,8 +13,7 @@ def shuffle_arrays(train_array, labels_array):
 
 
 def is_scientific_notation(number):
-    # Convert number to string and check if it contains 'e' or 'E'
-    number_str = f"{number:.16e}"  # Format to scientific notation with 16 decimal places
+    number_str = f"{number:.16e}"
     return 'e' in number_str or 'E' in number_str
 
 
@@ -28,6 +27,7 @@ def round_array(array):
 
 
 def enrich_training_data(training_data):
+    print("Enriching training data, it may take a while...")
     enriched_training_data = []
     for data in training_data:
         random_rotation = random.randint(-30, 30)

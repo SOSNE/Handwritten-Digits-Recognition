@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Added basic checks to ensure that image is not outside of canvas.">
+    <list default="true" id="30582775-942d-498d-9cf3-00a244cd7d5b" name="Changes" comment="Small code changes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools/enrich_training_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools/enrich_training_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -425,7 +424,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720531099122</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Small code changes.">
+      <option name="closed" value="true" />
+      <created>1720533179787</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1720533179787</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +450,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Small fix in model.py in input data format." />
     <MESSAGE value="Added load model function." />
     <MESSAGE value="Small changes in file path. Added handling of different types of data array dimensions." />
     <MESSAGE value="Small fix in predict_output function logic. Code cleen up." />
@@ -468,7 +474,8 @@
     <MESSAGE value="Added shift of image." />
     <MESSAGE value="Added small changes and code clean up." />
     <MESSAGE value="Added basic checks to ensure that image is not outside of canvas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added basic checks to ensure that image is not outside of canvas." />
+    <MESSAGE value="Small code changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Small code changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -485,7 +492,7 @@
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$neural_network_procedular.coverage" NAME="neural_network_procedular Coverage Results" MODIFIED="1720475363569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$main.coverage" NAME="main Coverage Results" MODIFIED="1720531540721" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$draw.coverage" NAME="draw Coverage Results" MODIFIED="1720354520392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
-    <SUITE FILE_PATH="coverage/Handwritten_Digits_Recognition$main.coverage" NAME="main Coverage Results" MODIFIED="1720532886942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Handwritten_Digits_Recognition$main.coverage" NAME="main Coverage Results" MODIFIED="1720532950167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$neural_network.coverage" NAME="neural_network Coverage Results" MODIFIED="1720178975945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$file_reader.coverage" NAME="file_reader Coverage Results" MODIFIED="1717939136830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
     <SUITE FILE_PATH="coverage/HandwrittenDigitsRecognition$utils.coverage" NAME="utils Coverage Results" MODIFIED="1719873952406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tools" />
