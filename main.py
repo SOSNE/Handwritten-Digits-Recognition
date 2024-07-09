@@ -9,9 +9,17 @@ import random
 images = read_file_image("data/t10k-images-idx3-ubyte")
 labels = read_file_label("data/t10k-labels-idx1-ubyte")
 
-images, labels = shuffle_arrays(images, labels)
+# images, labels = shuffle_arrays(images, labels)
 
-# model = load_model("store/weights.json")
+model = load_model("store/model.json")
+
+image_index = random.randint(0, len(images) - 1)
+
+
+print("Label:", labels[image_index])
+predicted_value, _ = predict_output(images[image_index], model[0], model[1], model[2], labels[image_index])
+print("Predicted label:", predicted_value)
+
 # bad_images = []
 
 # img = start_drawing()
@@ -32,8 +40,7 @@ images, labels = shuffle_arrays(images, labels)
 #
 # print(len(images))
 # print(len(bad_images))
-image_index = random.randint(0, 10000)
 print("Label:", labels[image_index])
-plt.imshow(images[image_index], cmap='gray')
+plt.imshow(images[10000], cmap='gray')
 plt.show()
 

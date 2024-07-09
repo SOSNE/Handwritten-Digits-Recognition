@@ -12,15 +12,64 @@ def shuffle_arrays(train_array, labels_array):
     return train_array, labels_array
 
 
+def is_scientific_notation(number):
+    # Convert number to string and check if it contains 'e' or 'E'
+    number_str = f"{number:.16e}"  # Format to scientific notation with 16 decimal places
+    return 'e' in number_str or 'E' in number_str
+
+
+def round_array(array):
+    for i in range(array.shape[0]):
+        for j in range(array.shape[1]):
+            number_str = f"{array[i, j]:.16e}"
+            if 'e' in number_str or 'E' in number_str:
+                array[i, j] = 0
+    return array
+
+
 def enrich_training_data(training_data):
     enriched_training_data = []
-    for data in training_data:
-        random_rotation = random.randint(0, 360)
-        x_shifted = random.randint(-10, 10)
-        y_shifted = random.randint(-10, 10)
-        data = shift(data, shift=[x_shifted, y_shifted])
-        data = rotate(data, angle=random_rotation)
-        enriched_training_data.append(data)
+    # for data in training_data:
+    data = training_data[0]
+    random_rotation = random.randint(-30, 30)
+
+    # data = rotate(data, angle=random_rotation)
+
+
+    # data = np.clip(data, 0, 255)
+
+    x_shifted = random.randint(-10, 10)
+    y_shifted = random.randint(-10, 10)
+    x_iterations = x_shifted
+    for _ in range(abs(x_iterations)):
+        data_test = shift(data, shift=[x_shifted, y_shifted])
+        # data_test = round_array(data_test)
+        for index in range(data_test.shape[0] - 1):
+            if data_test[0][index] != 0:
+                print(data_test[0][index])
+                x_shifted += 1
+                break
+            elif data_test[-1][index] != 0:
+                print(data_test[-1][index])
+                x_shifted -= 1
+                break
+
+    y_iterations = y_shifted
+    for _ in range(abs(y_iterations)):
+        data_test = shift(data, shift=[x_shifted, y_shifted])
+        # data_test = round_array(data_test)
+        first_column = [row[0] for row in data_test]
+        last_column = [row[-1] for row in data_test]
+        for index in range(data_test.shape[1] - 1):
+            if first_column[index] != 0:
+                y_shifted += 1
+                break
+            elif last_column[index] != 0:
+                y_shifted -= 1
+                break
+    data = shift(data, shift=[x_shifted, y_shifted])
+
+    enriched_training_data.append(data)
 
     training_data = np.append(training_data, enriched_training_data, axis=0)
     shuffle_arrays(training_data, training_data)
