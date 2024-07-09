@@ -42,11 +42,9 @@ def enrich_training_data(training_data):
             data_test = round_array(data_test)
             for index in range(data_test.shape[0] - 1):
                 if data_test[0][index] != 0:
-                    print(data_test[0][index])
                     x_shifted += 1
                     break
                 elif data_test[-1][index] != 0:
-                    print(data_test[-1][index])
                     x_shifted -= 1
                     break
 

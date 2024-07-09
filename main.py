@@ -41,6 +41,6 @@ print("Predicted label:", predicted_value)
 # print(len(images))
 # print(len(bad_images))
 print("Label:", labels[image_index])
-plt.imshow(images[10000], cmap='gray')
+plt.imshow(images[image_index], cmap='gray')
 plt.show()
 
