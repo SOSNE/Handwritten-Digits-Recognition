@@ -67,8 +67,7 @@ def enrich_training_data(training_data):
 
         enriched_training_data.append(data)
 
-    training_data = np.append(training_data, enriched_training_data, axis=0)
-    shuffle_arrays(training_data, training_data)
+    training_data = enriched_training_data
     return training_data
 
 
