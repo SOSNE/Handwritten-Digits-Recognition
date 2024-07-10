@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 
 color = (255, 255, 255)
-width = 7
+width = 13
 
 
 pygame.init()
@@ -24,6 +24,7 @@ def draw_line(start, end):
 def process_image(surface):
     pixel_array = pygame.surfarray.pixels2d(surface)
     pixel_array = np.array(pixel_array, dtype=np.uint8)
+    pixel_array = np.transpose(pixel_array)
     resized_image = cv2.resize(pixel_array, (28, 28))
     return resized_image
 
