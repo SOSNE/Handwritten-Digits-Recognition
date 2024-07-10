@@ -40,13 +40,14 @@ def enrich_training_data(training_data):
         for _ in range(abs(x_iterations)):
             data_test = shift(data, shift=[x_shifted, y_shifted])
             data_test = round_array(data_test)
+
             first_raw_sum = np.sum(data_test[0])
             last_raw_sum = np.sum(data_test[-1])
             if first_raw_sum != 0:
                 x_shifted += 1
-                break
             elif last_raw_sum != 0:
                 x_shifted -= 1
+            else:
                 break
 
         y_iterations = y_shifted
@@ -56,10 +57,10 @@ def enrich_training_data(training_data):
             first_column_sum = np.sum([row[0] for row in data_test])
             last_column_sum = np.sum([row[-1] for row in data_test])
             if first_column_sum != 0:
-                x_shifted += 1
-                break
+                y_shifted += 1
             elif last_column_sum != 0:
-                x_shifted -= 1
+                y_shifted -= 1
+            else:
                 break
 
         data = shift(data, shift=[x_shifted, y_shifted])
