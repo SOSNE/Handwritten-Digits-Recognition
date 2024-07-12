@@ -26,7 +26,7 @@ def round_array(array):
     return array
 
 
-quantity_of_photo = 5
+quantity_of_photo = 2
 
 
 def enrich_training_data(training_data):
@@ -34,41 +34,41 @@ def enrich_training_data(training_data):
     enriched_training_data = []
     for data in training_data:
         for _ in range(quantity_of_photo):
-            random_rotation = random.randint(-30, 30)
+            random_rotation = random.randint(-10, 10)
 
             data = rotate(data, angle=random_rotation)
 
-            x_shifted = random.randint(-10, 10)
-            y_shifted = random.randint(-10, 10)
-            x_iterations = x_shifted
-            for _ in range(abs(x_iterations)):
-                data_test = shift(data, shift=[x_shifted, y_shifted])
-                data_test = round_array(data_test)
-
-                first_raw_sum = np.sum(data_test[0])
-                last_raw_sum = np.sum(data_test[-1])
-                if first_raw_sum != 0:
-                    x_shifted += 1
-                elif last_raw_sum != 0:
-                    x_shifted -= 1
-                else:
-                    break
-
-            y_iterations = y_shifted
-            for _ in range(abs(y_iterations)):
-                data_test = shift(data, shift=[x_shifted, y_shifted])
-                data_test = round_array(data_test)
-                first_column_sum = np.sum([row[0] for row in data_test])
-                last_column_sum = np.sum([row[-1] for row in data_test])
-                if first_column_sum != 0:
-                    y_shifted += 1
-                elif last_column_sum != 0:
-                    y_shifted -= 1
-                else:
-                    break
-
-            data = shift(data, shift=[x_shifted, y_shifted])
-            data = round_array(data)
+            # x_shifted = random.randint(-10, 10)
+            # y_shifted = random.randint(-10, 10)
+            # x_iterations = x_shifted
+            # for _ in range(abs(x_iterations)):
+            #     data_test = shift(data, shift=[x_shifted, y_shifted])
+            #     data_test = round_array(data_test)
+            #
+            #     first_raw_sum = np.sum(data_test[0])
+            #     last_raw_sum = np.sum(data_test[-1])
+            #     if first_raw_sum != 0:
+            #         x_shifted += 1
+            #     elif last_raw_sum != 0:
+            #         x_shifted -= 1
+            #     else:
+            #         break
+            #
+            # y_iterations = y_shifted
+            # for _ in range(abs(y_iterations)):
+            #     data_test = shift(data, shift=[x_shifted, y_shifted])
+            #     data_test = round_array(data_test)
+            #     first_column_sum = np.sum([row[0] for row in data_test])
+            #     last_column_sum = np.sum([row[-1] for row in data_test])
+            #     if first_column_sum != 0:
+            #         y_shifted += 1
+            #     elif last_column_sum != 0:
+            #         y_shifted -= 1
+            #     else:
+            #         break
+            #
+            # data = shift(data, shift=[x_shifted, y_shifted])
+            # data = round_array(data)
 
             enriched_training_data.append(data)
 
