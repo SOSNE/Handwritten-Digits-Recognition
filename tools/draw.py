@@ -2,6 +2,7 @@ import pygame
 import numpy as np
 import cv2
 from scipy.ndimage import shift
+import random
 
 color = (255, 255, 255)
 width = 13
@@ -32,13 +33,22 @@ def center_image(image):
     return image
 
 
+def add_noise(image, noise_amount):
+    for _ in range(noise_amount):
+        random_coords = np.random.randint(0, 27, size=2)
+        image[tuple(random_coords)] = random.randint(60, 130)
+    return image
+
+
 def process_image(surface):
     pixel_array = pygame.surfarray.pixels2d(surface)
     pixel_array = np.array(pixel_array, dtype=np.uint8)
     pixel_array = np.transpose(pixel_array)
     resized_image = cv2.resize(pixel_array, (28, 28))
     centered_image = center_image(resized_image)
-    return centered_image
+    blured_image = cv2.GaussianBlur(centered_image, (3, 3), 0)
+    noisy_image = add_noise(blured_image, noise_amount=10)
+    return noisy_image
 
 
 screen.fill("black")
