@@ -73,6 +73,7 @@ def enrich_training_data(training_data):
             enriched_training_data.append(data)
 
     training_data = enriched_training_data
+    training_data = np.array(training_data)
     return training_data
 
 
@@ -82,4 +83,5 @@ def enrich_labels(labels):
         for _ in range(quantity_of_photo):
             labels_enriched.append(label)
     labels = labels_enriched
+    labels = np.array(labels)
     return labels
