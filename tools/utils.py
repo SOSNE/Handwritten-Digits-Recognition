@@ -1,4 +1,5 @@
-import json, os
+import json
+import os
 
 
 def save_model(data, path="../store/model.json"):

@@ -27,8 +27,8 @@ def center_image(image):
     row_sum = np.nonzero(np.sum(image, axis=1))
     y1, y2 = row_sum[0][0], row_sum[0][-1]
     x1, x2 = col_sum[0][0], col_sum[0][-1]
-    row_mov = ((27 - y2) - y1) / 2
-    col_mov = ((27 - x2) - x1) / 2
+    row_mov = ((image.shape[1] - 1 - y2) - y1) / 2
+    col_mov = ((image.shape[0] - 1 - x2) - x1) / 2
     image = shift(image, shift=[row_mov, col_mov])
     return image
 
