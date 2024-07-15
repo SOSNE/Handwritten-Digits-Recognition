@@ -6,7 +6,11 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 
-def forward_propagation(input_data, weights, biases, hidden_layers_diagram, labels):
+def relu(x):
+    return np.maximum(x, 0)
+
+
+def forward_propagation(input_data, weights, biases, hidden_layers_diagram, labels, activation_function):
     if input_data.ndim == 3:
         input_data = input_data.reshape(input_data.shape[0], input_data.shape[1] * input_data.shape[2])
     if input_data.ndim == 2:
@@ -19,9 +23,12 @@ def forward_propagation(input_data, weights, biases, hidden_layers_diagram, labe
     for index in range(len(hidden_layers_diagram) + 1):
         if index == 0:
             hidden_layer_values = input_data.dot(weights[index]) + biases[index]
-            hidden_layer_values_sigmoid = sigmoid(hidden_layer_values)
+            hidden_layer_values_sigmoid = activation_function(hidden_layer_values)
             previous_dot_product = hidden_layer_values_sigmoid
-
+        elif index != len(hidden_layers_diagram) + 1:
+            hidden_layer_values = previous_dot_product.dot(weights[index]) + biases[index]
+            hidden_layer_values_sigmoid = activation_function(hidden_layer_values)
+            previous_dot_product = hidden_layer_values_sigmoid
         else:
             hidden_layer_values = previous_dot_product.dot(weights[index]) + biases[index]
             hidden_layer_values_sigmoid = sigmoid(hidden_layer_values)
@@ -35,7 +42,8 @@ def forward_propagation(input_data, weights, biases, hidden_layers_diagram, labe
 
 
 def predict_output(input_data, weights, biases, hidden_layers_diagram, labels):
-    loss, sigmoid_output_values, _ = forward_propagation(input_data, weights, biases, hidden_layers_diagram, labels)
+    loss, sigmoid_output_values, _ = forward_propagation(input_data, weights, biases, hidden_layers_diagram, labels,
+                                                         relu)
     print(loss)
     index = 0
     for row in sigmoid_output_values:
