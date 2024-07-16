@@ -157,5 +157,5 @@ def convert_array_of_ndarray_to_list(arr):
 
 
 data = [convert_array_of_ndarray_to_list(weights),
-        convert_array_of_ndarray_to_list(bias), diagram]
+        convert_array_of_ndarray_to_list(bias), diagram, "relu"]
 save_model(data)
