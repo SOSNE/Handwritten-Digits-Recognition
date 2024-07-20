@@ -88,7 +88,8 @@ def forward_propagation(weights, biases, hidden_layers_diagram,
     return loss, previous_dot_product, hidden_layer_values_all, hidden_layer_values_activation_all, start_time
 
 
-def backward_propagation(weights, biases, hidden_layers_diagram, activation_function, activation_function_derivative):
+def backward_propagation(weights, biases, hidden_layers_diagram, activation_function, activation_function_derivative,
+                         learning_rate):
     loss, previous_dot_product, hidden_layer_values_all, hidden_layer_values_activation_all, start_time = forward_propagation(
         weights, biases, hidden_layers_diagram, activation_function)
     hidden_layers_number = len(hidden_layers_diagram)
@@ -125,8 +126,6 @@ def backward_propagation(weights, biases, hidden_layers_diagram, activation_func
         gradient_weights_all.insert(0, gradient_weight)
         gradient_bias_all.insert(0, gradient_bias)
 
-    learning_rate = 0.00001
-
     for i in range(len(weights)):
         weights[i] = weights[i] - gradient_weights_all[i] * learning_rate
         bias[i] = bias[i] - gradient_bias_all[i] * learning_rate
@@ -136,14 +135,17 @@ def backward_propagation(weights, biases, hidden_layers_diagram, activation_func
 
 diagram = [20, 10, 10]
 training_iterations = 4000
-weights, bias = generate_weights_and_bias(diagram)
+learning_rate = 0.00001
 
-weights, bias, start_time, end_time, _ = backward_propagation(weights, bias, diagram, relu, relu_derivative)
+weights, bias = generate_weights_and_bias(diagram)
+weights, bias, start_time, end_time, _ = backward_propagation(weights, bias, diagram, relu, relu_derivative,
+                                                              learning_rate)
 elapsed_time = end_time - start_time
 print("Estimated completion time min:", (elapsed_time * training_iterations) / 60)
 
 for i in range(training_iterations):
-    weights, bias, start_time, end_time, loss = backward_propagation(weights, bias, diagram, relu, relu_derivative)
+    weights, bias, start_time, end_time, loss = backward_propagation(weights, bias, diagram, relu, relu_derivative,
+                                                                     learning_rate)
     if loss < 100000:
         learning_rate = 0.000001
     print("Loss: ", loss, " iteration: ", i)
