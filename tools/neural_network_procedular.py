@@ -3,7 +3,6 @@ from tools.file_reader import read_file_image, read_file_label
 from tools.utils import save_model
 import time
 
-learning_rate = 0.000001
 input_nodes = 784
 output_nodes = 10
 input_data = read_file_image("../data/train-images-idx3-ubyte")
@@ -30,10 +29,7 @@ def relu(x):
 
 
 def relu_derivative(x):
-    if np.all(x < 0):
-        return 0
-    else:
-        return 1
+    return np.where(x > 0, 1, 0)
 
 
 def generate_weights_and_bias(hidden_layers_diagram):
@@ -129,6 +125,8 @@ def backward_propagation(weights, biases, hidden_layers_diagram, activation_func
         gradient_weights_all.insert(0, gradient_weight)
         gradient_bias_all.insert(0, gradient_bias)
 
+    learning_rate = 0.00001
+
     for i in range(len(weights)):
         weights[i] = weights[i] - gradient_weights_all[i] * learning_rate
         bias[i] = bias[i] - gradient_bias_all[i] * learning_rate
@@ -136,7 +134,7 @@ def backward_propagation(weights, biases, hidden_layers_diagram, activation_func
     return weights, bias, start_time, end_time, loss
 
 
-diagram = [10, 10]
+diagram = [20, 10, 10]
 training_iterations = 4000
 weights, bias = generate_weights_and_bias(diagram)
 
@@ -146,6 +144,8 @@ print("Estimated completion time min:", (elapsed_time * training_iterations) / 6
 
 for i in range(training_iterations):
     weights, bias, start_time, end_time, loss = backward_propagation(weights, bias, diagram, relu, relu_derivative)
+    if loss < 100000:
+        learning_rate = 0.000001
     print("Loss: ", loss, " iteration: ", i)
 
 
