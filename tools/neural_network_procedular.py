@@ -47,24 +47,17 @@ def generate_weights_and_bias(hidden_layers_diagram):
 def forward_propagation(weights, biases, hidden_layers_diagram,
                         activation_function):
     start_time = time.time()
-    previous_dot_product = 0
+    previous_dot_product = input_data
     hidden_layer_values_all = []
     hidden_layer_values_activation_all = []
-    for index in range(len(hidden_layers_diagram) + 1):
-        if index == 0:
-            hidden_layer_values = input_data.dot(weights[index]) + biases[index]
-            hidden_layer_values_sigmoid = activation_function(hidden_layer_values)
-            previous_dot_product = hidden_layer_values_sigmoid
-        elif index != len(hidden_layers_diagram):
-            hidden_layer_values = previous_dot_product.dot(weights[index]) + biases[index]
-            hidden_layer_values_sigmoid = activation_function(hidden_layer_values)
-            previous_dot_product = hidden_layer_values_sigmoid
-        else:
-            hidden_layer_values = previous_dot_product.dot(weights[index]) + biases[index]
-            hidden_layer_values_sigmoid = sigmoid(hidden_layer_values)
-            previous_dot_product = hidden_layer_values_sigmoid
+
+    for i in range(len(weights)):
+        hidden_layer_values = previous_dot_product.dot(weights[i]) + biases[i]
+        hidden_layer_values_activation = activation_function(hidden_layer_values)
+        previous_dot_product = hidden_layer_values_activation
         hidden_layer_values_all.append(hidden_layer_values)
-        hidden_layer_values_activation_all.append(hidden_layer_values_sigmoid)
+        hidden_layer_values_activation_all.append(hidden_layer_values_activation)
+
     loss = np.square(previous_dot_product - output_values_true).sum()
     return loss, previous_dot_product, hidden_layer_values_all, hidden_layer_values_activation_all, start_time
 
@@ -109,8 +102,8 @@ def backward_propagation(weights, biases, hidden_layers_diagram, activation_func
         gradient_bias_all.insert(0, gradient_bias)
 
     for i in range(len(weights)):
-        weights[i] = weights[i] - gradient_weights_all[i] * learning_rate
-        bias[i] = bias[i] - gradient_bias_all[i] * learning_rate
+        weights[i] = weights[i] + (-gradient_weights_all[i] * learning_rate)
+        bias[i] = biases[i] + (-gradient_bias_all[i] * learning_rate)
     end_time = time.time()
     return weights, bias, start_time, end_time, loss
 
