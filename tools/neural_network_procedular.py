@@ -25,39 +25,20 @@ def sigmoid_derivative(x):
 
 
 def relu(x):
-    return np.maximum(x, 0)
+    return np.maximum(0, x)
 
 
 def relu_derivative(x):
-    return np.where(x > 0, 1, 0)
+    return (x > 0).astype(float)
 
 
 def generate_weights_and_bias(hidden_layers_diagram):
     all_weights = []
     all_biases = []
-    for index, hidden_layer_nodes in enumerate(hidden_layers_diagram):
-        if len(hidden_layers_diagram) == 1:
-            weight = np.random.randn(input_nodes, hidden_layer_nodes)
-            all_weights.append(weight)
-            bias = np.full((hidden_layer_nodes,), 0.1)
-            all_biases.append(bias)
-            weight = np.random.randn(hidden_layer_nodes, output_nodes)
-            all_weights.append(weight)
-            bias = np.full((output_nodes,), 0.1)
-            all_biases.append(bias)
-        elif index == 0:
-            weight = np.random.randn(input_nodes, hidden_layer_nodes)
-            all_weights.append(weight)
-            weight = np.random.randn(hidden_layer_nodes, hidden_layers_diagram[index + 1])
-            bias = np.full((hidden_layer_nodes,), 0.1)
-        elif index != len(hidden_layers_diagram) - 1:
-            weight = np.random.randn(hidden_layer_nodes, hidden_layers_diagram[index + 1])
-            bias = np.full((hidden_layer_nodes,), 0.1)
-        else:
-            weight = np.random.randn(hidden_layer_nodes, output_nodes)
-            bias = np.full((hidden_layer_nodes,), 0.1)
-            all_biases.append(bias)
-            bias = np.full((output_nodes,), 0.1)
+    layer_sizes = [input_nodes] + hidden_layers_diagram + [output_nodes]
+    for i in range(len(layer_sizes) - 1):
+        weight = np.random.randn(layer_sizes[i], layer_sizes[i + 1])
+        bias = np.full((layer_sizes[i + 1],), 0.1)
         all_weights.append(weight)
         all_biases.append(bias)
     return all_weights, all_biases
@@ -74,7 +55,7 @@ def forward_propagation(weights, biases, hidden_layers_diagram,
             hidden_layer_values = input_data.dot(weights[index]) + biases[index]
             hidden_layer_values_sigmoid = activation_function(hidden_layer_values)
             previous_dot_product = hidden_layer_values_sigmoid
-        elif index != len(hidden_layers_diagram) + 1:
+        elif index != len(hidden_layers_diagram):
             hidden_layer_values = previous_dot_product.dot(weights[index]) + biases[index]
             hidden_layer_values_sigmoid = activation_function(hidden_layer_values)
             previous_dot_product = hidden_layer_values_sigmoid
@@ -104,7 +85,7 @@ def backward_propagation(weights, biases, hidden_layers_diagram, activation_func
             gradient_derivative_values = (gradient_sigmoid_output_values_loss *
                                           sigmoid_derivative(hidden_layer_values_all[index]))
 
-            gradient_weight = np.dot(gradient_derivative_values.T, hidden_layer_values_activation_all[index - 1]).T
+            gradient_weight = np.dot(hidden_layer_values_activation_all[index - 1].T, gradient_derivative_values)
             gradient_bias = np.sum(gradient_derivative_values, 0)
             previous_gradient_derivative_values = gradient_derivative_values
         elif index != 0:
@@ -112,10 +93,11 @@ def backward_propagation(weights, biases, hidden_layers_diagram, activation_func
             gradient_derivative_values = (
                     gradient_hidden_loss * activation_function_derivative(hidden_layer_values_all[index]))
 
-            gradient_weight = np.dot(gradient_derivative_values.T, hidden_layer_values_activation_all[index - 1]).T
+            gradient_weight = np.dot(hidden_layer_values_activation_all[index - 1].T, gradient_derivative_values)
             gradient_bias = np.sum(gradient_derivative_values, 0)
             previous_gradient_derivative_values = gradient_derivative_values
         else:
+
             gradient_hidden_loss = np.dot(previous_gradient_derivative_values, weights[index + 1].T)
             gradient_derivative_values = (
                     gradient_hidden_loss * activation_function_derivative(hidden_layer_values_all[index]))
@@ -133,18 +115,19 @@ def backward_propagation(weights, biases, hidden_layers_diagram, activation_func
     return weights, bias, start_time, end_time, loss
 
 
-diagram = [20, 10, 10]
+diagram = [10, 10]
 training_iterations = 4000
 learning_rate = 0.00001
 
 weights, bias = generate_weights_and_bias(diagram)
-weights, bias, start_time, end_time, _ = backward_propagation(weights, bias, diagram, relu, relu_derivative,
+weights, bias, start_time, end_time, _ = backward_propagation(weights, bias, diagram, sigmoid, sigmoid_derivative,
                                                               learning_rate)
 elapsed_time = end_time - start_time
 print("Estimated completion time min:", (elapsed_time * training_iterations) / 60)
 
 for i in range(training_iterations):
-    weights, bias, start_time, end_time, loss = backward_propagation(weights, bias, diagram, relu, relu_derivative,
+    weights, bias, start_time, end_time, loss = backward_propagation(weights, bias, diagram, sigmoid,
+                                                                     sigmoid_derivative,
                                                                      learning_rate)
     if loss < 100000:
         learning_rate = 0.000001
