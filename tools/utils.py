@@ -2,11 +2,11 @@ import json
 import os
 
 
-def save_model(data, path="../store/model.json"):
-    data = json.dumps(data)
-    os.makedirs(os.path.join("../store"), exist_ok=True)
-    with open(path, 'w') as f:
-        f.write(data)
+def save_model(data, path="../store", name="model"):
+    os.makedirs(path, exist_ok=True)
+    full_path = os.path.join(path, f"{name}.json")
+    with open(full_path, 'w') as f:
+        json.dump(data, f)
 
 
 def load_model(path="../store/model.json"):
